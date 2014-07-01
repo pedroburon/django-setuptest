@@ -147,6 +147,10 @@ class SetupTestSuite(unittest.TestSuite):
 
         if not settings.configured:
             settings.configure(**setting_attrs)
+        
+        import django
+        if hasattr(django, 'setup'): # django 1.7
+            django.setup()
 
     def coverage_report(self):
         """
